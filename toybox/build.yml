@@ -10,4 +10,4 @@ build:
     cd $PKG/bin
     cp $SRC/toybox-x86_64 toybox
     chmod +x ./toybox
-    for x in $(toybox); do ln -s ./toybox ./$x; done
+    for x in $(toybox); do ln -sv ./toybox ./$x; done
