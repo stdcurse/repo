@@ -1,0 +1,13 @@
+name: toybox
+description: Common linux commands in a multicall binary
+version: 9999
+release: 1
+sources:
+  - http://landley.net/toybox/bin/toybox-x86_64
+build:
+  type: custom
+  script: |
+    cd $PKG/bin
+    cp $SRC/toybox-x86_64 toybox
+    chmod +x ./toybox
+    for x in $(toybox); do ln -s ./toybox ./$x; done
