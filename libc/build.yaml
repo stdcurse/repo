@@ -1,0 +1,8 @@
+{{ $version := "1.2.2" }}
+name: libc
+description: Standart C library
+version: {{ $version }}
+sources:
+  - http://musl.libc.org/releases/musl-{{ $version }}.tar.gz
+build:
+  type: autotools
