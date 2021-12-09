@@ -1,8 +1,0 @@
-{{ $version := "4.3" }}
-name: make
-description: Standard tool to compile source trees
-version: {{ $version }}
-sources:
-  - http://ftp.gnu.org/gnu/make/make-{{ $version }}.tar.gz
-build:
-  type: autotools

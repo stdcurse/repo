@@ -2,7 +2,10 @@
 name: libc
 description: Standart C library
 version: {{ $version }}
+subpackages:
+  - dev
 sources:
   - http://musl.libc.org/releases/musl-{{ $version }}.tar.gz
 build:
-  type: autotools
+  - type: autotools
+    folder: musl-{{ $version }}
