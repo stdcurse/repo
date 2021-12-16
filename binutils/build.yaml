@@ -14,6 +14,9 @@ build:
   - type: autotools
     folder: binutils-{{ $version }}
     opts:
+      - build=$(uname -m)-linux-musl
+      - host=$(uname -m)-linux-musl
+      - target=$(uname -m)-stdcurse-linux-musl
       - enable-gold
       - enable-ld=default
       - enable-plugins
