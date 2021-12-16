@@ -1,0 +1,11 @@
+{{ $version := "1.2.11" }}
+name: libz
+description: A Massively Spiffy Yet Delicately Unobtrusive Compression Library
+version: {{ $version }}
+subpackages:
+  - dev
+sources:
+  - https://zlib.net/zlib-{{ $version }}.tar.gz
+build:
+  - type: autotools
+    folder: zlib-{{ $version }}

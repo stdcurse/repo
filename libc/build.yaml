@@ -10,7 +10,7 @@ build:
   - type: custom
     folder: musl-{{ $version }}
     build: |
-      ../configure
+      ./configure \
         --prefix=/usr \
         --libdir=/lib \
         --sysconfdir=/etc \
