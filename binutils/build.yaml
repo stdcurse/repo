@@ -1,0 +1,22 @@
+{{ $version := "2.37" }}
+name: binutils
+description: The GNU Binutils are a collection of binary tools
+version: {{ $version }}
+depends:
+  - libz
+makedepends:
+  - libz-dev
+subpackages:
+  - dev
+sources:
+  - https://ftp.gnu.org/gnu/binutils/binutils-{{ $version }}.tar.gz
+build:
+  - type: autotools
+    folder: binutils-{{ $version }}
+    opts:
+      - enable-gold
+      - enable-ld=default
+      - enable-plugins
+      - enable-shared
+      - enable-64-bit-bfd
+      - with-system-zlib
