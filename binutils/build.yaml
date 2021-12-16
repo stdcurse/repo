@@ -9,7 +9,7 @@ makedepends:
 subpackages:
   - dev
 sources:
-  - https://ftp.gnu.org/gnu/binutils/binutils-{{ $version }}.tar.gz
+  - http://ftp.gnu.org/gnu/binutils/binutils-{{ $version }}.tar.gz
 build:
   - type: autotools
     folder: binutils-{{ $version }}
