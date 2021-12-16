@@ -7,5 +7,15 @@ subpackages:
 sources:
   - http://musl.libc.org/releases/musl-{{ $version }}.tar.gz
 build:
-  - type: autotools
+  - type: custom
     folder: musl-{{ $version }}
+    build: |
+      ../configure
+        --prefix=/usr \
+        --libdir=/lib \
+        --sysconfdir=/etc \
+        --localstatedir=/var \
+        --disable-eh-frame
+      make
+    install: |
+      make DESTDIR="$pkgdir" install
