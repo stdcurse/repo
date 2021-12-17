@@ -15,7 +15,7 @@ build:
     folder: binutils-{{ $version }}
     opts:
       - build=$(uname -m)-linux-musl
-      - host=$(uname -m)-linux-musl
+      - host=$(uname -m)-stdcurse-linux-musl
       - target=$(uname -m)-stdcurse-linux-musl
       - enable-gold
       - enable-ld=default
@@ -23,3 +23,5 @@ build:
       - enable-shared
       - enable-64-bit-bfd
       - with-system-zlib
+    installopts:
+      - tooldir=/usr
