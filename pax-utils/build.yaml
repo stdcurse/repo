@@ -1,0 +1,14 @@
+{{ $version := "1.3.3" }}
+name: pax-utils
+description: ELF related utils
+version: {{ $version }}
+sources:
+  - http://gitweb.gentoo.org/proj/pax-utils.git/snapshot/pax-utils-{{ $version }}.tar.gz
+build:
+  - type: custom
+    folder: pax-utils-{{ $version }}
+    build: |
+      make
+    install: |
+      mkdir -p "$pkgdir/bin"
+      mv pspax scanelf dumpelf scanmacho "$pkgdir/bin/"

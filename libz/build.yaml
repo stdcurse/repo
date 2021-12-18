@@ -2,10 +2,12 @@
 name: libz
 description: A Massively Spiffy Yet Delicately Unobtrusive Compression Library
 version: {{ $version }}
-subpackages:
-  - dev
 sources:
   - http://zlib.net/zlib-{{ $version }}.tar.gz
 build:
   - type: autotools
+    no_triplet: y
     folder: zlib-{{ $version }}
+subpackages:
+  - type: integrated
+    name: dev

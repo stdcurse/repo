@@ -1,0 +1,55 @@
+{{ $version := "11.2.0" }}
+{{ $mpc_version := "1.2.1" }}
+{{ $mpfr_version := "4.1.0" }}
+{{ $gmp_version := "6.2.1" }}
+name: gcc
+description: The GNU Compiler Collection
+version: {{ $version }}
+depends:
+  - libz
+makedepends:
+  - libz-dev
+sources:
+  - http://ftp.gnu.org/gnu/gcc/gcc-{{ $version }}/gcc-{{ $version }}.tar.gz
+  - http://ftp.gnu.org/gnu/mpc/mpc-{{ $mpc_version }}.tar.gz
+  - http://www.mpfr.org/mpfr-{{ $mpfr_version }}/mpfr-{{ $mpfr_version }}.tar.gz
+  - http://ftp.gnu.org/gnu/gmp/gmp-{{ $gmp_version }}.tar.xz
+build:
+  - type: autotools
+    prepare: |
+      mv "../gmp-{{ $gmp_version }}" gmp
+      mv "../mpfr-{{ $mpfr_version }}" mpfr
+      mv "../mpc-{{ $mpc_version }}" mpc
+      mkdir -p "$pkgdir/usr/$TARGET"
+      ln -s "$pkgdir/usr/$TARGET/lib64" "../../lib"
+    folder: gcc-{{ $version }}
+    opts:
+      - with-pkgversion="stdcurse 9999 {{ $version }}"
+      - disable-multilib
+      - enable-languages=c,c++,lto
+      - enable-lto
+      - enable-plugin
+      - disable-bootstrap
+      - with-system-zlib
+      - disable-nls
+      - disable-werror
+      - disable-libsanitizer
+      - with-libs=/lib
+      - with-headers=/usr/include
+subpackages:
+  - type: integrated
+    name: dev
+  - type: custom
+    name: libcxx
+    standalone: y
+    description: GNU C++ standard runtime library
+    script: |
+      mkdir -p "$subpkgdir"/usr/lib
+      mv "$pkgdir"/usr/lib/libstdc++.so.* "$subpkgdir"/usr/lib/
+  - type: custom
+    name: libgcc
+    standalone: y
+    description: GNU C runtime libraries
+    script: |
+      mkdir -p "$subpkgdir"/usr/lib
+      mv "$pkgdir"/usr/lib/libgcc_s.so.* "$subpkgdir"/usr/lib/

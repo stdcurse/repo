@@ -6,17 +6,12 @@ depends:
   - libz
 makedepends:
   - libz-dev
-subpackages:
-  - dev
 sources:
   - http://ftp.gnu.org/gnu/binutils/binutils-{{ $version }}.tar.gz
 build:
   - type: autotools
     folder: binutils-{{ $version }}
     opts:
-      - build=$(uname -m)-linux-musl
-      - host=$(uname -m)-stdcurse-linux-musl
-      - target=$(uname -m)-stdcurse-linux-musl
       - enable-gold
       - enable-ld=default
       - enable-plugins
@@ -25,3 +20,6 @@ build:
       - with-system-zlib
     installopts:
       - tooldir=/usr
+subpackages:
+  - type: integrated
+    name: dev

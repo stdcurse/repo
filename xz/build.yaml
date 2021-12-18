@@ -1,0 +1,14 @@
+{{ $version := "5.2.5" }}
+name: xz
+description: XZ Utils is free general-purpose data compression software 
+version: {{ $version }}
+sources:
+  - http://tukaani.org/xz/xz-{{ $version }}.tar.gz
+build:
+  - type: autotools
+    folder: xz-{{ $version }}
+    opts:
+      - disable-static
+subpackages:
+  - type: integrated
+    name: dev

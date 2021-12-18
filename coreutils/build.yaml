@@ -1,0 +1,13 @@
+{{ $version := "9.0" }}
+name: coreutils
+description: The GNU Core Utilities are the basic file, shell and text manipulation utilities of the GNU operating system
+version: {{ $version }}
+subpackages:
+  - dev
+sources:
+  - http://ftp.gnu.org/gnu/coreutils/coreutils-{{ $version }}.tar.gz
+build:
+  - type: autotools
+    folder: coreutils-{{ $version }}
+    opts:
+      - disable-static FORCE_UNSAFE_CONFIGURE=1

@@ -2,8 +2,6 @@
 name: libc
 description: Standart C library
 version: {{ $version }}
-subpackages:
-  - dev
 sources:
   - http://musl.libc.org/releases/musl-{{ $version }}.tar.gz
 build:
@@ -19,3 +17,6 @@ build:
       make
     install: |
       make DESTDIR="$pkgdir" install
+subpackages:
+  - type: integrated
+    name: dev
