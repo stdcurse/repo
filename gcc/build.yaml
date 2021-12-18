@@ -40,16 +40,9 @@ subpackages:
   - type: integrated
     name: dev
   - type: custom
-    name: libcxx
+    name: gcc-runtime
     standalone: y
-    description: GNU C++ standard runtime library
+    description: GCC runtime libraries
     script: |
-      mkdir -p "$subpkgdir"/usr/lib
-      mv "$pkgdir"/usr/lib/libstdc++.so.* "$subpkgdir"/usr/lib/
-  - type: custom
-    name: libgcc
-    standalone: y
-    description: GNU C runtime libraries
-    script: |
-      mkdir -p "$subpkgdir"/usr/lib
-      mv "$pkgdir"/usr/lib/libgcc_s.so.* "$subpkgdir"/usr/lib/
+      mkdir -p "$subpkgdir"/lib
+      mv "$pkgdir/usr/$TARGET/lib64"/* "$subpkgdir"/lib
