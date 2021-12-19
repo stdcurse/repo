@@ -20,8 +20,6 @@ build:
       mv "../gmp-{{ $gmp_version }}" gmp
       mv "../mpfr-{{ $mpfr_version }}" mpfr
       mv "../mpc-{{ $mpc_version }}" mpc
-      mkdir -p "$pkgdir/usr/$TARGET"
-      ln -s "$pkgdir/usr/$TARGET/lib64" "../../lib"
     folder: gcc-{{ $version }}
     opts:
       - with-pkgversion="stdcurse 9999 {{ $version }}"
