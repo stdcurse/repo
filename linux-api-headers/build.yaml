@@ -7,7 +7,7 @@ entries:
   - type: custom
     folder: linux-{{ .ver }}
     build: |
-      mkdir -p "$pkgdir/include"
+      mkdir -p "$pkgdir/usr/include"
       make mrproper
       make headers
       find usr/include -name '.*' -delete
