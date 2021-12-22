@@ -7,7 +7,7 @@ desc: The GNU Compiler Collection
 ver: 11.2.0
 deps: [ libz ]
 makedeps: [ libz-dev ]
-sources:
+srcs:
   - http://ftp.gnu.org/gnu/gcc/gcc-{{ .ver }}/gcc-{{ .ver }}.tar.gz
   - http://ftp.gnu.org/gnu/mpc/mpc-{{ .mpc_ver }}.tar.gz
   - http://www.mpfr.org/mpfr-{{ .mpfr_ver }}/mpfr-{{ .mpfr_ver }}.tar.gz
