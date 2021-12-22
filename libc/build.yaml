@@ -1,22 +1,18 @@
-{{ $version := "1.2.2" }}
 name: libc
-description: Standart C library
-version: {{ $version }}
-sources:
-  - http://musl.libc.org/releases/musl-{{ $version }}.tar.gz
-build:
-  - type: custom
-    folder: musl-{{ $version }}
-    build: |
-      ./configure \
-        --prefix=/usr \
-        --libdir=/lib \
-        --sysconfdir=/etc \
-        --localstatedir=/var \
-        --disable-eh-frame
-      make
-    install: |
-      make DESTDIR="$pkgdir" install
-subpackages:
-  - type: integrated
-    name: dev
+desc: Standart C library
+ver: 2.34
+subpkgs: [ {{ .name }}-dev ]
+srcs: [ "https://ftp.gnu.org/gnu/glibc/glibc-{{ .ver }}.tar.gz" ]
+entries:
+  - type: autotools
+    folder: glibc-{{ .ver }}
+    env: [ CC="gcc -ffile-prefix-map=/tools=/usr" ]
+    cfgopts:
+      - disable-werror
+      - enable-kernel="3.2"
+      - enable-stack-protector=strong
+      - with-headers=/usr/include libc_cv_slibdir=/lib
+    after: |
+      cp ../nscd/nscd.conf "$pkgdir/etc/nscd.conf"
+      mkdir -p "$pkgdir/var/cache/nscd"
+      make localedata/install-locales DESTDIR="$pkgdir"

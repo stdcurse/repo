@@ -1,17 +1,14 @@
-{{ $version := "2.37" }}
 name: binutils
-description: The GNU Binutils are a collection of binary tools
-version: {{ $version }}
-depends:
-  - libz
-makedepends:
-  - libz-dev
-sources:
-  - http://ftp.gnu.org/gnu/binutils/binutils-{{ $version }}.tar.gz
-build:
+desc: The GNU Binutils are a collection of binary tools
+ver: "2.37"
+deps: [ libz ]
+subpkgs: [ {{ .name }}-dev ]
+makedeps: [ libz-dev ]
+srcs: [ http://ftp.gnu.org/gnu/binutils/binutils-{{ .ver }}.tar.gz ]
+entries:
   - type: autotools
-    folder: binutils-{{ $version }}
-    opts:
+    folder: {{ .name }}-{{ .ver }}
+    cfgopts:
       - enable-gold
       - enable-ld=default
       - enable-plugins
@@ -20,6 +17,3 @@ build:
       - with-system-zlib
     installopts:
       - tooldir=/usr
-subpackages:
-  - type: integrated
-    name: dev

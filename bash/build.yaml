@@ -1,19 +1,15 @@
-{{ $version := "5.1" }}
 name: bash
-description: Bash is the GNU Project's shell—the Bourne Again SHell
-version: {{ $version }}
-sources:
-  - http://ftp.gnu.org/gnu/bash/bash-{{ $version }}.tar.gz
-build:
+desc: Bash is the GNU Project's shell—the Bourne Again SHell
+ver: 5.1
+srcs: [ http://ftp.gnu.org/gnu/bash/bash-{{ .ver }}.tar.gz ]
+subpkgs: [ {{ .name }}-dev ]
+entries:
   - type: autotools
-    folder: bash-{{ $version }}
-    prepare: |
-      mkdir -p "$pkgdir/bin"
+    folder: bash-{{ .ver }}
+    env:
+      - MAKEFLAGS="-j1"
+    cfgopts: [ without-bash-malloc ]
+    after: |
       cd "$pkgdir/bin"
       ln -s bash sh
-    disable_parallel: y
-    opts:
-      - without-bash-malloc
-subpackages:
-  - type: integrated
-    name: dev
+      ln -s bash ash

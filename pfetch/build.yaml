@@ -1,12 +1,11 @@
-{{ $version := "0.6.0" }}
 name: pfetch
-description: A pretty system information tool written in POSIX sh
-version: {{ $version }}
-sources:
-  - pfetch-{{ $version }}.tar.gz::http://github.com/dylanaraps/pfetch/archive/refs/tags/{{ $version }}.tar.gz
-build:
+desc: A pretty system information tool written in POSIX sh
+ver: 0.6.0
+srcs: [ pfetch-{{ .ver }}.tar.gz::http://github.com/dylanaraps/pfetch/archive/refs/tags/{{ .ver }}.tar.gz ]
+deps: [ bash ]
+entries:
   - type: custom
-    folder: pfetch-{{ $version }}
-    install: |
+    folder: pfetch-{{ .ver }}
+    build: |
       mkdir -p "$pkgdir/bin"
       mv pfetch "$pkgdir/bin/"

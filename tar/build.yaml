@@ -1,11 +1,9 @@
-{{ $version := "1.34" }}
 name: tar
-description: GNU Tar provides the ability to create tar archives, as well as various other kinds of manipulation
-version: {{ $version }}
-sources:
-  - http://ftp.gnu.org/gnu/tar/tar-{{ $version }}.tar.gz
-build:
+desc: GNU Tar provides the ability to create tar archives, as well as various other kinds of manipulation
+ver: 1.34
+srcs: [ http://ftp.gnu.org/gnu/tar/tar-{{ .ver }}.tar.gz ]
+entries:
   - type: autotools
-    folder: tar-{{ $version }}
-    opts:
-      - disable-static FORCE_UNSAFE_CONFIGURE=1
+    folder: {{ .name }}-{{ .ver }}
+    env: [ FORCE_UNSAFE_CONFIGURE=1 ]
+    cfgopts: [ disable-static ]

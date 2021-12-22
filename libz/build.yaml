@@ -1,13 +1,8 @@
-{{ $version := "1.2.11" }}
 name: libz
-description: A Massively Spiffy Yet Delicately Unobtrusive Compression Library
-version: {{ $version }}
-sources:
-  - http://zlib.net/zlib-{{ $version }}.tar.gz
-build:
+desc: A Massively Spiffy Yet Delicately Unobtrusive Compression Library
+ver: 1.2.11
+subpkgs: [ {{ .name }}-dev ]
+srcs: [ http://zlib.net/zlib-{{ .ver }}.tar.gz ]
+entries:
   - type: autotools
-    no_triplet: y
-    folder: zlib-{{ $version }}
-subpackages:
-  - type: integrated
-    name: dev
+    folder: zlib-{{ .ver }}
