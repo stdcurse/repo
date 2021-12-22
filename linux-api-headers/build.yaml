@@ -2,7 +2,6 @@ name: linux-api-headers
 desc: The Linux API Headers expose the kernel's API for use by Glibc
 ver: 5.15.11
 srcs: [ http://cdn.kernel.org/pub/linux/kernel/v5.x/linux-{{ .ver }}.tar.gz ]
-deps: [ bash ]
 entries:
   - type: custom
     folder: linux-{{ .ver }}
