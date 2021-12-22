@@ -1,6 +1,7 @@
 name: libc
 desc: Standart C library
 ver: 2.34
+makedeps: [ linux-api-headers ]
 subpkgs: [ {{ .name }}-dev ]
 srcs: [ "https://ftp.gnu.org/gnu/glibc/glibc-{{ .ver }}.tar.gz" ]
 entries:
