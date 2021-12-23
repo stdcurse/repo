@@ -6,3 +6,4 @@ srcs: [ http://zlib.net/zlib-{{ .ver }}.tar.gz ]
 entries:
   - type: autotools
     folder: zlib-{{ .ver }}
+    cfgopts: [ shared ]
