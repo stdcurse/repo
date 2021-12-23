@@ -42,3 +42,6 @@ entries:
       - disable-libsanitizer
       - with-libs=/lib
       - with-headers=/usr/include
+    after: |
+      cd "$pkgdir/bin"
+      for x in gcc g++ gcc-ar gcc-nm gcc-ranlib; do ln -s $x $TGT-$x; done
