@@ -5,6 +5,10 @@ srcs: [ http://cdn.kernel.org/pub/linux/kernel/v5.x/linux-{{ .ver }}.tar.gz ]
 entries:
   - type: custom
     folder: linux-{{ .ver }}
+    env:
+      - CC="gcc -ffile-prefix-map=/tools=/usr"
+      - CXX="g++ -ffile-prefix-map=/tools=/usr"
+      - LD="ld"
     build: |
       mkdir -p "$pkgdir/usr/include"
       make mrproper

@@ -7,7 +7,10 @@ srcs: [ "https://ftp.gnu.org/gnu/glibc/glibc-{{ .ver }}.tar.gz" ]
 entries:
   - type: autotools
     folder: glibc-{{ .ver }}
-    env: [ CC="gcc -ffile-prefix-map=/tools=/usr" ]
+    env: 
+      - CC="gcc -ffile-prefix-map=/tools=/usr"
+      - CXX="g++ -ffile-prefix-map=/tools=/usr"
+      - LD="ld"
     cfgopts:
       - disable-werror
       - enable-kernel="3.2"
