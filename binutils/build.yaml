@@ -13,6 +13,8 @@ entries:
       - enable-ld=default
       - enable-plugins
       - enable-shared
+      - with-libs=/lib
+      - with-headers=/usr/include
       - enable-64-bit-bfd
       - with-system-zlib
     installopts:

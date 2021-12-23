@@ -1,6 +1,8 @@
 name: xz
 desc: XZ Utils is free general-purpose data compression software 
 ver: 5.2.5
+deps: [ libz ]
+makedeps: [ libz-dev ]
 srcs: [ http://tukaani.org/xz/xz-{{ .ver }}.tar.gz ]
 subpkgs: [ {{ .name }}-dev ]
 entries:
